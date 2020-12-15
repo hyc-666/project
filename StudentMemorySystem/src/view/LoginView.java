@@ -48,8 +48,9 @@ public class LoginView {
         hBox_3.getChildren().addAll(buttonCancel,buttonLogin);
 
 
-        TextField stu_num = new TextField();
+        TextField stu_num = new TextField("41709040102");
         PasswordField stu_password = new PasswordField();
+        stu_password.setText("user501");
 
         hBox_1.getChildren().addAll(name_input,stu_num);
         hBox_2.getChildren().addAll(password_input,stu_password);
@@ -84,7 +85,7 @@ public class LoginView {
         buttonLogin.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                //获取输入的账号
+                //获取输入的账号和密码
                 String userNumber = stu_num.getText();
                 String password = stu_password.getText();
 
@@ -121,9 +122,12 @@ public class LoginView {
 
     public void loginCheck(Student student,Stage primaryStage){
         this.student = baseCtrl.queryStudentBynNuAndPs(student);
+        //链接数据库查询
         if (this.student == null){
             errorHandle(primaryStage);
+            //处理查询失败的场景
         }else{
+            //查询成功关闭此窗口,展示新的窗口
             primaryStage.close();
             showDataView(getLoginRes());
         }
@@ -136,7 +140,7 @@ public class LoginView {
     public void showDataView(boolean ok){
         System.out.println("登录成功");
         if (ok){
-            new DataView().showDataView();
+            new DataView().showDataView(student);
         }
     }
 }
