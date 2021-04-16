@@ -18,6 +18,7 @@ public class FileClient {
         BufferedInputStream bis = null;//本地读入文件的缓冲流
         try {
             //取得服务端 InetAddress
+
             InetAddress address = InetAddress.getByName("192.168.197.1");
             client = new Socket(address,45540);//建立socket,指定端口号和ip
             os = client.getOutputStream();//获得输出流
