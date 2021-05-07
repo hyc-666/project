@@ -14,7 +14,7 @@
 			//给加入购物车按钮绑定单击事件
 			$("button.addToCart").click(function (){
 				var bookId = $(this).attr("bookId");
-				location.href = "http://localhost:8080/book/CartServlet?action=addItem&id=" + bookId;
+				location.href = "${basePath}cartServlet?action=addItem&id=" + bookId;
 			});
 		});
 	</script>
@@ -53,10 +53,18 @@
 				</form>
 			</div>
 			<div style="text-align: center">
-				<span>您的购物车中有3件商品</span>
-				<div>
-					您刚刚将<span style="color: red">时间简史</span>加入到了购物车中
-				</div>
+				<c:if test="${empty sessionScope.cart.items}">
+					<span> </span>
+					<div>
+						<span style="color: red">购物车里空空如也哦!</span>
+					</div>
+				</c:if>
+				<c:if test="${not empty sessionScope.cart.items}">
+					<span>您的购物车中有${sessionScope.cart.totalCount}件商品</span>
+					<div>
+						您刚刚将<span style="color: red">${sessionScope.laseName}</span>加入到了购物车中
+					</div>
+				</c:if>
 			</div>
 
 			<c:forEach items="${requestScope.page.items}" var="book">
