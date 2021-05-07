@@ -10,14 +10,13 @@ import java.lang.reflect.Method;
  */
 public class ReflectPrivateTest {
     public static void main(String[] args) {
-        Class clazz = Student.class;
+        Class<Student> clazz = Student.class;
 
         try {
             //调用私有构造器
-            Constructor cons = clazz.getDeclaredConstructor(String.class);
+            Constructor<Student> cons = clazz.getDeclaredConstructor(String.class);
             cons.setAccessible(true);
-            Object obj = cons.newInstance("Tony");
-            Student stu = (Student)obj;
+            Student stu = cons.newInstance("Tony");
             System.out.println(stu);
 
             //调用私有属性

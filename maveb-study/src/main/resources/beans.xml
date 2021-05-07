@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--  告诉spring要创建哪个对象
+        id 遵循变量命名规则,唯一标识一个雷
+        class 是类的全限定名,不能是接口
+
+      -->
+    <bean id="daoImpl" class="com.hyc.dao.impl.DaoImpl"/>
+</beans>
+
+<!-- bean是指Java的对象,spring中对象称为bean -->
+<!-- spring-beans.xsd是约束文件 -->
