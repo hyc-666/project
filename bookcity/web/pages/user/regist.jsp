@@ -12,6 +12,23 @@
 		<script type="text/javascript">
 			// 页面加载完成之后
 			$(function () {
+				//当用户输入完用户名之后,输入框失去焦点
+				//绑定单击事件判断用户名是否可用
+				$("#username").blur(function (){
+					//获取用户名
+					var username = this.value;
+					//发起ajax请求给服务器
+					$.getJSON("${basePath}userServlet","action=ajaxExistsUsername&username=" + username,function (data){
+						// console.log(data);
+						if (data.existsUsername){
+							$("span.errorMsg").text("用户名已存在！");
+						}else {
+							$("span.errorMsg").text("用户名可用！");
+						}
+					});
+				});
+
+
 				// 给注册绑定单击事件
 				$("#code_img").click(function (){
 					//给验证码绑定单击事件用于刷新验证码

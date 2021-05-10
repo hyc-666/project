@@ -18,6 +18,8 @@ public abstract class BaseServlet extends HttpServlet {
         // 解决post请求中文乱码问题
         // 一定要在获取请求参数之前调用才有效
         req.setCharacterEncoding("UTF-8");
+        //解决响应乱码
+        resp.setContentType("text/html;charset=UTF-8");
 
         String action = req.getParameter("action");
         try {
@@ -28,6 +30,8 @@ public abstract class BaseServlet extends HttpServlet {
             method.invoke(this, req, resp);
         } catch (Exception e) {
             e.printStackTrace();
+            //仍需要把异常抛出去
+            throw new RuntimeException(e);
         }
     }
 

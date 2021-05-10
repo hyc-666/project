@@ -64,5 +64,35 @@
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/orderServlet</url-pattern>
     </servlet-mapping>
-    
+
+    <filter>
+        <filter-name>ManagerFilter</filter-name>
+        <filter-class>book.filter.ManageFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ManagerFilter</filter-name>
+        <url-pattern>/pages/manager/*</url-pattern>
+<!--        将servlet程序也拦截,防止通过地址栏直接访问servlet程序-->
+        <url-pattern>/manager/bookServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>TransactionFilter</filter-name>
+        <filter-class>book.filter.TransactionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TransactionFilter</filter-name>
+<!--        拦截工程下所有请求-->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/pages/error/error500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/error/error404.jsp</location>
+    </error-page>
+
 </web-app>

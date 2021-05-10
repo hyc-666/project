@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    构造器注入
+        主要使用name形参命和value要设值的值
+        index属性可以按顺序选择需要设置第几个参数,value设置形参的值
+-->
+    <bean id="student" class="com.hyc.pojo.Student">
+        <constructor-arg name="name" value="tom"/>
+        <constructor-arg name="age" value="13"/>
+        <constructor-arg name="school" ref="school"/>
+    </bean>
+<!--    当按形参顺序写的时候index属性标签可以省略-->
+    <bean id="school" class="com.hyc.pojo.School">
+        <constructor-arg value="qinghua"/>
+        <constructor-arg value="beijing"/>
+    </bean>
+</beans>

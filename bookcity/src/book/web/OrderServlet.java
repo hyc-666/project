@@ -4,9 +4,9 @@ import book.pojo.Cart;
 import book.pojo.User;
 import book.service.OrderService;
 import book.service.impl.OrderServiceImpl;
+import book.utils.JdbcUtils;
 
 import javax.servlet.ServletException;
-import javax.servlet.SessionCookieConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,6 +30,7 @@ public class OrderServlet extends BaseServlet{
             return;
         }
         //调用OrderService.createOrder()方法生成和保存订单
+        //已经在所有工程路径下使用filter进行了事务管理,则不用在service层加
         String orderId = orderService.createOrder(cart, loginUser.getId());
         //得到订单号将订单号保存到session域中
         session.setAttribute("orderId",orderId);

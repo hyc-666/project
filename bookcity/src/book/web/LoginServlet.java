@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 已经使用UserServlet来来优化和代替LoginServlet和 RegistServlet
+ */
 public class LoginServlet extends HttpServlet {
 
     private UserService userService = new UserServiceImpl();

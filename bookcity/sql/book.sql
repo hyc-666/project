@@ -11,7 +11,7 @@ create table t_user(
 	`email` varchar(200)
 );
 
-insert into t_user(`username`,`password`,`email`) values('admin','admin','admin@atguigu.com');
+insert into t_user(`username`,`password`,`email`) values('admin','admin','admin@athyc.com');
 
 select * from t_user;
 
