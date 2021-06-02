@@ -15,12 +15,16 @@
 			$("button.addToCart").click(function (){
 				var bookId = $(this).attr("bookId");
 				location.href = "${basePath}cartServlet?action=addItem&id=" + bookId;
+				//现在使用ajax请求来发
+				<%--$.getJSON("${basePath}cartServlet","action=ajaxAddItem&id=" + bookId,function (data){--%>
+				<%--	$("#cartTotalCount").text("您的购物车中一共有 " + data.totalCount + " 件商品");--%>
+				<%--	$("#cartLastName").text(data.lastName);--%>
+				<%--});--%>
 			});
 		});
 	</script>
 </head>
 <body>
-	
 	<div id="header">
 <%--			<img class="logo_img" alt="" src="static/img/logo.gif" >--%>
 			<span class="wel_word">网上书城</span>
@@ -33,7 +37,7 @@
 <%--				如果已经登录,则显示用户信息--%>
 				<c:if test="${not empty sessionScope.user}">
 					<span>欢迎<span class="um_span">${sessionScope.user.username}</span>光临书城</span>
-					<a href="pages/order/order.jsp">我的订单</a>
+					<a href="orderServlet?action=queryOrdersByUserId&userId=${sessionScope.user.id}">我的订单</a>
 					<a href="userServlet?action=logout">注销</a>&nbsp;&nbsp;
 					<a href="index.jsp">返回</a>
 				</c:if>
@@ -54,15 +58,15 @@
 			</div>
 			<div style="text-align: center">
 				<c:if test="${empty sessionScope.cart.items}">
-					<span> </span>
+					<span id="cartTotalCount"> </span>
 					<div>
 						<span style="color: red">购物车里空空如也哦!</span>
 					</div>
 				</c:if>
 				<c:if test="${not empty sessionScope.cart.items}">
-					<span>您的购物车中有${sessionScope.cart.totalCount}件商品</span>
+					<span id="cartTotalCount">您的购物车中有${sessionScope.cart.totalCount}件商品</span>
 					<div>
-						您刚刚将<span style="color: red">${sessionScope.laseName}</span>加入到了购物车中
+						您刚刚将<span style="color: red" id="cartLastName" >${sessionScope.lastName}</span>加入到了购物车中
 					</div>
 				</c:if>
 			</div>
@@ -100,16 +104,9 @@
 			</div>
 			</c:forEach>
 		</div>
-
 		<%--静态包含分页条--%>
 		<%@include file="/pages/common/page_nav.jsp"%>
-
-
-
-
-	
 	</div>
-
 	<%--静态包含页脚内容--%>
 	<%@include file="/pages/common/footer.jsp"%>
 

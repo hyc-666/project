@@ -74,6 +74,10 @@
         <url-pattern>/pages/manager/*</url-pattern>
 <!--        将servlet程序也拦截,防止通过地址栏直接访问servlet程序-->
         <url-pattern>/manager/bookServlet</url-pattern>
+<!--        在用户查看订单时如果还没有登录则也要拦截此请求让用户先登录-->
+        <url-pattern>/pages/order/*</url-pattern>
+<!--        将servlet程序也拦截,防止通过地址栏进入-->
+        <url-pattern>/orderServlet</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -94,5 +98,14 @@
         <error-code>404</error-code>
         <location>/pages/error/error404.jsp</location>
     </error-page>
+
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>book.filter.UserFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/pages/manager/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

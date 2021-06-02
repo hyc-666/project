@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>我的订单</title>
+<title>订单详情</title>
 
 	<%-- 静态包含 base标签、css样式、jQuery文件 --%>
 	<%@ include file="/pages/common/head.jsp"%>
@@ -21,11 +21,10 @@
 	
 	<div id="header">
 			<img class="logo_img" alt="" src="../../static/img/logo.gif" >
-			<span class="wel_word">我的订单</span>
+			<span class="wel_word">订单详情</span>
 
 		<%--静态包含，登录 成功之后的菜单 --%>
 		<%@ include file="/pages/common/login_success_menu.jsp"%>
-
 
 	</div>
 	
@@ -33,29 +32,17 @@
 		
 		<table>
 			<tr>
-				<td>日期</td>
-				<td>金额</td>
-				<td>状态</td>
-				<td>详情</td>
+				<td>商品名称</td>
+				<td>数量</td>
+				<td>单价</td>
+				<td>总价</td>
 			</tr>
-			<c:forEach items="${sessionScope.orderList}" var="order">
+			<c:forEach items="${sessionScope.orderItemList}" var="orderItem">
 				<tr>
-					<td>${order.createTime}</td>
-					<td>${order.price}</td>
-					<td>
-						<c:if test="${order.status == 0}">
-							未发货
-						</c:if>
-						<c:if test="${order.status == 1}">
-							已发货
-						</c:if>
-						<c:if test="${order.status == 2}">
-							已签收
-						</c:if>
-					</td>
-					<td>
-						<a href="orderServlet?action=queryOrderItemsByOrderId&orderId=${order.orderId}">查看详情</a>
-					</td>
+					<td>${orderItem.name}</td>
+					<td>${orderItem.count}</td>
+					<td>${orderItem.price}</td>
+					<td>${orderItem.totalPrice}</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -9,7 +9,9 @@ import book.dao.impl.OrderItemDaoImpl;
 import book.pojo.*;
 import book.service.OrderService;
 
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,5 +47,30 @@ public class OrderServiceImpl implements OrderService {
         cart.clear();
         //返回订单号
         return orderId;
+    }
+
+    @Override
+    public List<Order> queryOrdersByUserId(Integer userId) throws SQLException {
+        return orderDao.queryOrdersByUserId(userId);
+    }
+
+    @Override
+    public List<Order> queryOrders() throws SQLException {
+        return orderDao.queryOrders();
+    }
+
+    @Override
+    public List<OrderItem> queryOrderItemsByOrderId(String orderId) throws SQLException {
+        return orderItemDao.queryOrderItemsByOrderId(orderId);
+    }
+
+    @Override
+    public String queryUsernameByUserId(Integer userId) {
+        return orderDao.queryUsernameByUserId(userId);
+    }
+
+    @Override
+    public int updateStatus(int status,String orderId) {
+        return orderDao.updateStatus(status,orderId);
     }
 }

@@ -25,7 +25,6 @@ public abstract class BaseDao {
         try {
             return queryRunner.update(connection, sql, args);
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
